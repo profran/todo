@@ -21,6 +21,7 @@ def archiveToDo(request):
 
         if (request.user == todo.user):
             todo.archived = True
+            todo.save()
 
 def deleteToDo(request):
     if (request.POST):
