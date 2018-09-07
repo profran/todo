@@ -5,8 +5,31 @@
     <title>ToDo</title>
 </head>
 <body>
+
+<div>
+    <form action="{% url 'todo:create' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="title" id="">
+        <input type="text" name="description" id="">
+        <button type="submit">Send</button>
+    </form>
+</div>
 {% for x in todos %}
-    <h1>{{ x.title }}</h1>
+    <div>
+        <h1>{{ x.title }}</h1>
+        <h2>{{ x.date }}</h2>
+        <form action="{% url 'todo:archive' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ x.id }}">
+            <button type="submit">Archive</button>
+        </form>
+        <form action="{% url 'todo:delete' %}" method="post ">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ x.id }}">
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+
 {% endfor %}
 </body>
 </html>

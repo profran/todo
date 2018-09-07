@@ -5,6 +5,6 @@ from todo.models import ToDo
 
 def index(request):
 
-    context = {'todos' : ToDo.objects.all().filter(archived=False)}
+    context = {'todos' : ToDo.objects.all().filter(archived=False, user=request.user)}
 
     return render(request, 'webpage/index.html', context)

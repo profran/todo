@@ -15,11 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-import todo.urls as todo
-import webpage.urls as website
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('todo/', include(todo)),
-    path('webpage/', include(website))
+    path('todo/', include(('todo.urls', 'todo'), namespace='todo')),
+    path('webpage/', include(('webpage.urls', 'webpage'), namespace='webpage'))
 ]
