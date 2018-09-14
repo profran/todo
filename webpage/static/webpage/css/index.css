@@ -1,0 +1,37 @@
+html {
+  height: 100vh;
+  width: 100vw;
+}
+
+body {
+  height: inherit;
+  width: inherit;
+  margin: 0;
+  background-color: #00FFA2;
+}
+
+.container {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: auto;
+  padding: 5px;
+  /* this */
+}
+
+.container>div {
+  flex: 1 1 auto;
+  margin: 5px;
+  /* and that, will result in a 10px gap */
+}
+
+.todo {
+  width: auto;
+  text-align: left  ;
+  background-color: #00A367;
+}
+
+.button {
+  background-color: #FF005D;
+}

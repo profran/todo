@@ -1,35 +1,42 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>ToDo</title>
+  <meta charset="UTF-8">
+  <title>ToDo</title>
+  <link rel="stylesheet" href="{% static 'webpage/css/index.css' %}" type="text/css">
 </head>
+
 <body>
-
-<div>
+  <div>
     <form action="{% url 'todo:create' %}" method="post">
-        {% csrf_token %}
-        <input type="text" name="title" id="">
-        <input type="text" name="description" id="">
-        <button type="submit">Send</button>
+      {% csrf_token %}
+      <input type="text" name="title" id="">
+      <input type="text" name="description" id="">
+      <button type="submit">Send</button>
     </form>
-</div>
-{% for x in todos %}
-    <div>
-        <h1>{{ x.title }}</h1>
-        <h2>{{ x.date }}</h2>
+  </div>
+  <div class="container">
+    {% for x in todos %}
+    <div class="todo">
+      <h1>{{ x.title }}</h1>
+      <h2>{{ x.date }}</h2>
+      <div class="container">
         <form action="{% url 'todo:archive' %}" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="id" value="{{ x.id }}">
-            <button type="submit">Archive</button>
+          {% csrf_token %}
+          <input type="hidden" name="id" value="{{ x.id }}">
+          <button class="button" type="submit">Archive</button>
         </form>
-        <form action="{% url 'todo:delete' %}" method="post ">
-            {% csrf_token %}
-            <input type="hidden" name="id" value="{{ x.id }}">
-            <button type="submit">Delete</button>
+        <form action="{% url 'todo:delete' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="id" value="{{ x.id }}">
+          <button class="button" type="submit">Delete</button>
         </form>
+      </div>
     </div>
-
-{% endfor %}
+    {% endfor %}
+  </div>
 </body>
+
 </html>
